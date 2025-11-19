@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Password Strength Analyzer</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="background-animation">
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+            <div class="shape shape-5"></div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="header">
+            <i class="fas fa-shield-alt security-icon"></i>
+            <h1>Advanced Password Security Analyzer</h1>
+            <p class="subtitle">Protect your digital identity with strong passwords</p>
+        </div>
+        
+        <div class="input-section">
+            <div class="input-container">
+                <i class="fas fa-lock input-icon"></i>
+                <input type="password" id="password" placeholder="Enter your password to analyze">
+                <button type="button" id="togglePassword" class="toggle-btn">
+                    <i class="fas fa-eye"></i>
+                </button>
+            </div>
+            
+            <div class="password-generator">
+                <button id="generatePassword" class="generate-btn">
+                    <i class="fas fa-magic"></i> Generate Secure Password
+                </button>
+            </div>
+        </div>
+        
+        <div class="strength-section">
+            <div class="strength-meter-container">
+                <div class="strength-label">Password Strength</div>
+                <div class="strength-meter">
+                    <div class="strength-bar" id="strengthBar"></div>
+                    <div class="strength-segments">
+                        <span></span><span></span><span></span><span></span><span></span>
+                    </div>
+                </div>
+                <div class="strength-text" id="strengthText">Enter a password to analyze</div>
+            </div>
+            
+            <div class="time-to-crack" id="timeToCrack">
+                <i class="fas fa-clock"></i>
+                <span>Time to crack: <strong>Unknown</strong></span>
+            </div>
+        </div>
+        
+        <div class="analysis-grid">
+            <div class="criteria-container">
+                <h3><i class="fas fa-check-circle"></i> Security Requirements</h3>
+                <div class="criteria" id="criteria">
+                    <div class="criterion" id="length">
+                        <span class="icon"><i class="fas fa-times"></i></span>
+                        <span class="text">Minimum 8 characters</span>
+                        <span class="detail" id="lengthDetail">0 chars</span>
+                    </div>
+                    <div class="criterion" id="uppercase">
+                        <span class="icon"><i class="fas fa-times"></i></span>
+                        <span class="text">Uppercase letters (A-Z)</span>
+                        <span class="detail" id="uppercaseDetail">0 found</span>
+                    </div>
+                    <div class="criterion" id="lowercase">
+                        <span class="icon"><i class="fas fa-times"></i></span>
+                        <span class="text">Lowercase letters (a-z)</span>
+                        <span class="detail" id="lowercaseDetail">0 found</span>
+                    </div>
+                    <div class="criterion" id="number">
+                        <span class="icon"><i class="fas fa-times"></i></span>
+                        <span class="text">Numbers (0-9)</span>
+                        <span class="detail" id="numberDetail">0 found</span>
+                    </div>
+                    <div class="criterion" id="special">
+                        <span class="icon"><i class="fas fa-times"></i></span>
+                        <span class="text">Special characters (!@#$%)</span>
+                        <span class="detail" id="specialDetail">0 found</span>
+                    </div>
+                    <div class="criterion" id="noCommon">
+                        <span class="icon"><i class="fas fa-times"></i></span>
+                        <span class="text">Not a common password</span>
+                        <span class="detail" id="commonDetail">Checking...</span>
+                    </div>
+                    <div class="criterion" id="noSequence">
+                        <span class="icon"><i class="fas fa-times"></i></span>
+                        <span class="text">No sequential patterns</span>
+                        <span class="detail" id="sequenceDetail">Checking...</span>
+                    </div>
+                    <div class="criterion" id="noRepeat">
+                        <span class="icon"><i class="fas fa-times"></i></span>
+                        <span class="text">No repeated characters</span>
+                        <span class="detail" id="repeatDetail">Checking...</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="stats-container">
+                <h3><i class="fas fa-chart-bar"></i> Password Statistics</h3>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-value" id="charCount">0</div>
+                        <div class="stat-label">Characters</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="entropy">0</div>
+                        <div class="stat-label">Entropy (bits)</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="uniqueChars">0</div>
+                        <div class="stat-label">Unique Chars</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="complexity">0%</div>
+                        <div class="stat-label">Complexity</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="score-section">
+            <div class="score-container">
+                <div class="score-circle" id="scoreCircle">
+                    <div class="score-value" id="scoreValue">0</div>
+                    <div class="score-max">/8</div>
+                </div>
+                <div class="score-text">
+                    <div class="score-title">Security Score</div>
+                    <div class="score-description" id="scoreDescription">Enter a password to get started</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tips-container">
+            <h3><i class="fas fa-lightbulb"></i> Password Tips</h3>
+            <div class="tips-grid">
+                <div class="tip">
+                    <i class="fas fa-key"></i>
+                    <span>Use a mix of uppercase, lowercase, numbers, and symbols</span>
+                </div>
+                <div class="tip">
+                    <i class="fas fa-ban"></i>
+                    <span>Avoid personal information like names or birthdays</span>
+                </div>
+                <div class="tip">
+                    <i class="fas fa-random"></i>
+                    <span>Make it random and unpredictable</span>
+                </div>
+                <div class="tip">
+                    <i class="fas fa-ruler"></i>
+                    <span>Longer passwords are exponentially stronger</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
